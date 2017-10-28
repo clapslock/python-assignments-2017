@@ -1,6 +1,5 @@
 from random import randint
 import time
-import os
 
 def springRain():
 
@@ -41,7 +40,7 @@ def springRain():
                 if (len(completeFrame) > selectedHeight):
                     completeFrame.pop()
 
-                #add +1 to the total number of completed lines 
+                #add +1 to the total number of completed lines
                 x += 1
 
 springRain()
