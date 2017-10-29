@@ -1,45 +1,64 @@
+import copy
+import time
 
 def squareAnimation():
 
-
     while True:
 
-        frameHeight = int(input("Please enter frame's height: \nRemember: Odd numbers only!\n"))
-        frameWidth = int(input("Please enter frame's width:\nRemember: Odd numbers only!\n"))
+        height = int(input("Please enter frame's height: \nRemember: Odd numbers only!\n"))
+        width = int(input("Please enter frame's width:\nRemember: Odd numbers only!\n"))
 
-
-        if (frameHeight % 2 != 0 and frameWidth % 2 != 0):
+        if (height % 2 != 0 and width % 2 != 0):
             break
-    numberOfFrames = min(int(frameWidth/2), int(frameHeight/2))
-    frameMiddleRow = int(frameHeight/2+1)
-    lineTemplate = "o " * frameWidth
-    #frame filled with "o" only
-    blankFrame = [lineTemplate] * frameHeight
+    numberOfFrames = min(int(width/2), int(height/2))
+    middleRow = int(height / 2)
+    middleColumn = int(width / 2)
 
-    #frame with x in center
-    frameTemplate = blankFrame
-    findListCenter(frameTemplate, frameHeight, frameWidth)
-    printListWithoutBrackets(frameTemplate)
+    numberOfHorizontalXes = 3
+    lineTemplate = "o " * width
+    blankFrame = [lineTemplate] * height
+    currentFrameIndex = 1
 
-    for currentFrame in range(0, numberOfFrames):
-        frame = blankFrame
-        horizontalBar = 1
-        numberOfHorizontalXes = 3
-        numberOfOs = (frameWidth - numberOfHorizontalXes) / 2
+    completeListOfFrames = ([blankFrame] * (numberOfFrames + 1)) #an array filled with blankGrames
 
-        for frameLine in range(0, len(frame)):
-            frame[frameLine - horizontalBar] = "o " * numberOfOs + "x " * numberOfHorizontalXes + "o " * numberOfOs
+    firstFrame = copy.deepcopy(blankFrame)
+    firstFrame [int(height / 2)] = "o " * (int(width / 2)) + "x " + "o " * (int(width / 2))
 
+    completeListOfFrames[0] = firstFrame
 
+    for frame in completeListOfFrames:
+        if frame == firstFrame:
+            continue
 
+        numberOfO = int((width - numberOfHorizontalXes) / 2)
+        loopFrameCopy = copy.deepcopy(frame)
 
+        loopFrameCopy[middleRow + currentFrameIndex] = "o " * numberOfO + "x " * numberOfHorizontalXes + "o " * numberOfO
+        loopFrameCopy[middleRow - currentFrameIndex] = "o " * numberOfO + "x " * numberOfHorizontalXes + "o " * numberOfO
+        loopFrameCopy[middleRow] = "o " * numberOfO + "x " + "o " * (width - (2 * numberOfO + 2)) + "x " + "o " * numberOfO
 
-def findListCenter(frame, height, width):
-    frame[int(height / 2)] = "o " * (int(width / 2)) + "x " + "o " * (int(width / 2))
+        for wallIndex in range(1, currentFrameIndex):
+            loopFrameCopy[middleRow + wallIndex] = "o " * numberOfO + "x " + "o " * (width - (2 * numberOfO + 2)) + "x " + "o " * numberOfO
+            loopFrameCopy[middleRow - wallIndex] = "o " * numberOfO + "x " + "o " * (width - (2 * numberOfO + 2)) + "x " + "o " * numberOfO
 
-def printListWithoutBrackets(frame):
-    for object in range(0, len(frame)):
-        tempLine = frame[object]
-        print("".join(tempLine))
+        completeListOfFrames[currentFrameIndex] = loopFrameCopy
+
+        numberOfO += 3
+        numberOfHorizontalXes += 2
+        currentFrameIndex += 1
+
+    revCompleteListOfFrames = copy.deepcopy(completeListOfFrames[::-1])
+    revCompleteListOfFrames.pop(0)
+    finalList = completeListOfFrames + revCompleteListOfFrames
+    printListWithoutBrackets(finalList)
+
+def printListWithoutBrackets(frameOfFrames):
+
+    for frame in frameOfFrames:
+        for line in frame:
+
+           print("".join(line))
+        time.sleep(0.3)
+        print("\n")
 
 squareAnimation()
