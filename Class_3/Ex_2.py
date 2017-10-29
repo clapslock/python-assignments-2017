@@ -11,7 +11,7 @@ def squareAnimation():
         if (frameHeight % 2 != 0 and frameWidth % 2 != 0):
             break
     numberOfFrames = min(int(frameWidth/2), int(frameHeight/2))
-
+    frameMiddleRow = int(frameHeight/2+1)
     lineTemplate = "o " * frameWidth
     #frame filled with "o" only
     blankFrame = [lineTemplate] * frameHeight
@@ -21,10 +21,15 @@ def squareAnimation():
     findListCenter(frameTemplate, frameHeight, frameWidth)
     printListWithoutBrackets(frameTemplate)
 
-    for frameNumber in range(0, numberOfFrames):
-        currentFrame = blankFrame
+    for currentFrame in range(0, numberOfFrames):
+        frame = blankFrame
+        horizontalBar = 1
+        numberOfHorizontalXes = 3
+        numberOfOs = (frameWidth - numberOfHorizontalXes) / 2
 
-        
+        for frameLine in range(0, len(frame)):
+            frame[frameLine - horizontalBar] = "o " * numberOfOs + "x " * numberOfHorizontalXes + "o " * numberOfOs
+
 
 
 
