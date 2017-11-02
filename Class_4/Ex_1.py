@@ -1,32 +1,31 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 30 10:08:38 2017
 
-@author: kunabart
-"""
+#  Ex_1.py
+#  Class_4
+#
+#  Created by Bartosz Kunat on 02/11/2017.
+#  Copyright © 2017 Clapslock Interactive. All rights reserved.
+
 import time
 
-def silnia1():
-  start = time.time()
-  n = int(input("Podaj liczb z której chesz obliczy silnie: \n"))
+def factorial(n):
   m = 1
   for i in range (1, n+1):
     m *= i
-  print("Silnia z", n , "to", m) 
-  end = time.time()
-  print (end - start)
+  return m
   
-def silnia(n): 
-    start = time.time()
+def recFactorial(n):
     if n == 1 or n == 0 :
         end = time.time()
         return 1
-    end = time.time()
-    print (end - start)
-    return silnia(n-1) *n
+    return recFactorial(n-1) * n
     
-    
-silniaTest =  silnia(5)
-print(silniaTest)
+start = time.time()
+factorialTest1 = factorial(20)
+stop = time.time()
+print(start-stop)
 
-silnia1()
+start = time.time()
+factorialTest2 = recFactorial(20)
+stop = time.time()
+print(start-stop)
+

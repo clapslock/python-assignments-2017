@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 30 10:08:38 2017
 
-@author: kunabart
-"""
+#  Ex_2.py
+#  Class_4
+#
+#  Created by Bartosz Kunat on 02/11/2017.
+#  Copyright © 2017 Clapslock Interactive. All rights reserved.
+
 import time
 
 def fibonacci(n):
@@ -13,11 +14,8 @@ def fibonacci(n):
         
         a,b = b, a+b
     return a
-    
-fibonacci1Test = fibonacci(10)
-print(fibonacci1Test)
 
-def recursiveFibonacci(n) :
+def recFibonacci(n) :
     
     if n == 0:
         return 0 
@@ -25,7 +23,14 @@ def recursiveFibonacci(n) :
     elif n == 1: 
         return 1 
     else:     
-        return recursiveFibonacci(n-1) + recursiveFibonacci(n-2)
+        return recFibonacci(n-1) + recFibonacci(n-2)
     
-fibonacci2Test = recursiveFibonacci(10)
-print(fibonacci2Test)
+start = time.time()
+fibonacciTest1 = fibonacci(12)
+stop = time.time()
+print(start-stop)
+
+start = time.time()
+fibonacciTest2 = recFibonacci(12)
+stop = time.time()
+print(start-stop)
