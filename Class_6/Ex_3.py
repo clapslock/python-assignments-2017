@@ -1,45 +1,55 @@
 
 def removeSpacesAndSpecialChars(inputText):
 
-    whitelist = set('abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    whitelist = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
     answer = ''.join(filter(whitelist.__contains__, inputText))
     answer = answer.lower()
     return answer
 
-def zKluczem(tekst, klucz):
+def zKluczem(unencryptedMsg, key):
 
-    tekst = list(removeSpacesAndSpecialChars(tekst))
-    klucz = list(removeSpacesAndSpecialChars(klucz))
-    alphabet = list("abcdefghijklmnopqrstuvwxy")
-    alpHabetDictionary = dict()
-    encryptedMessage = ""
+    unencryptedMsg = list(removeSpacesAndSpecialChars(unencryptedMsg))
+    key = list(removeSpacesAndSpecialChars(key))
+    alphabet = list("abcdefghijklmnopqrstuvwxyz")
+    alphabetDictionary = dict()
+    invAlphabetDictionary = dict()
+    encryptedMsg = ""
 
-    for i in range (0, len(alphabet)) :
-        alpHabetDictionary[alphabet[i]] = i + 1
+    # creates a dictionary where 'a' = 1, 'b' = 2, ... , 'z' = 26
+    for i in range (0, len(alphabet)):
+        alphabetDictionary[alphabet[i]] = i + 1
 
-    kluczIntValuesList = []
+    for i in range(0, len(alphabet)):
+        for letter in alphabet:
+            invAlphabetDictionary[i+1] = letter
 
-    for i in range(0, len(klucz)):
-        singleElementValue = alpHabetDictionary[klucz[i]]
-        kluczIntValuesList.append(singleElementValue)
+    intValuesKey = list()
 
-    for characterIndex in range(1, len(tekst) + 1):
+    # converts chars in key to their int values (using alphabetDictionary)
+    for character in key:
+        intValuesKey.append(alphabetDictionary[character])
 
-        character = ord(tekst[characterIndex - 1])  #numeral value of
+    for characterIndex in range(1, len(unencryptedMsg) + 1):
+
+        character = alphabetDictionary[unencryptedMsg[characterIndex-1]]  #numeral value of
+        encryptedCharacter = 0
 
         if characterIndex % 3 == 0:
-            character = character + kluczIntValuesList[2]
-            encryptedMessage += chr(character)
+            encryptedCharacter = (character + intValuesKey[2])
+            encryptedMsg += invAlphabetDictionary[encryptedCharacter]
         elif characterIndex % 2 == 0:
-            character = character + kluczIntValuesList[1]
-            encryptedMessage += chr(character)
+            encryptedCharacter = (character + intValuesKey[1])
+            encryptedMsg += invAlphabetDictionary[encryptedCharacter]
         else:
-            character = character + kluczIntValuesList[0]
-            encryptedMessage += chr(character)
-    return encryptedMessage
+            encryptedCharacter = (character + intValuesKey[0])
+            encryptedMsg += invAlphabetDictionary[encryptedCharacter]
 
-test = zKluczem("Hello", "zzz")
+    return encryptedMsg
+
+def charCheck(a):
+    return a % 26
+test = zKluczem("aaa", "aaa")
 print(test)
 
 
