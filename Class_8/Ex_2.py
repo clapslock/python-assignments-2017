@@ -26,17 +26,3 @@ testList = listGenerator(10)
 print("List before insertion sort: ")
 printList(testList)
 insertionSort(testList)
-
-'''
-1st iteration 
-    i = 1 
-    tmp = unsortedlist[1]
-    k = 1 
-    
-    while k > 0 and unsortedlist[1] < unsortedlist[0]:
-            unsortedlist[1] = unsortedlist[0] //the biiger object is now at a place with higher index 
-            k -= 1 // k = 0 
-    unsortedlist[k] = tmp gith
-        
-'''
-
