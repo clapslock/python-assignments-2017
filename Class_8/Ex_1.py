@@ -4,7 +4,7 @@ def listGenerator(n):
     generatedList = list()
 
     for n in range(0, n):
-        generatedList.append(random.randint(0,150))
+        generatedList.append(random.randint(0,100))
     return generatedList
 
 def printList(list):
