@@ -4,13 +4,16 @@ def listGenerator(n):
     generatedList = list()
 
     for n in range(0, n):
-        generatedList.append(random.randint(0,100))
+        generatedList.append(random.randint(0,150))
     return generatedList
 
 def printList(list):
     print (*list)
 
 def insertionSort(unsortedList):
+
+    print("Generated list before sorting:")
+    printList(unsortedList)
 
     for i in range(1, len(unsortedList)):
         tmp = unsortedList[i]
@@ -20,9 +23,7 @@ def insertionSort(unsortedList):
             k -= 1
         unsortedList[k] = tmp
 
+    print("List sorted with insertion sort: ")
     printList(unsortedList)
 
-testList = listGenerator(10)
-print("List before insertion sort: ")
-printList(testList)
-insertionSort(testList)
+insertionSort(listGenerator(50))
