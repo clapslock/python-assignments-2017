@@ -1,11 +1,10 @@
-
 import random
 
 def listGenerator(n):
     generatedList = list()
 
     for n in range(0, n):
-        generatedList.append(random.randint(0,100))
+        generatedList.append(random.randint(0,150))
     return generatedList
 
 def printList(list):
@@ -13,21 +12,19 @@ def printList(list):
 
 def bubbleSort(unsortedList):
 
+    print("Generated list before sorting: ")
+    printList(unsortedList)
+
     unsortedElements = len(unsortedList)
 
     while unsortedElements > 0:
-
         for i in range(0, unsortedElements - 1):
 
             if unsortedList[i] > unsortedList[i + 1]:
-
                 unsortedList[i], unsortedList[i + 1] = unsortedList[i + 1], unsortedList[i]
 
         unsortedElements -= 1
+    print("List sorted with bubble sort: ")
     printList(unsortedList)
 
-testList = listGenerator(10)
-print("Unsorted list: ")
-printList(testList)
-bubbleSort(testList)
-
+bubbleSort(listGenerator(50))
