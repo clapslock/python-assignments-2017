@@ -10,6 +10,7 @@ def listGenerator(n):
 def printList(list):
     print(*list)
 
+
 def mergeSort(unsortedList):
 
     if len(unsortedList) > 1:
@@ -28,18 +29,18 @@ def mergeLists(listA, listB):
 
     while len(listA) > 0 or len(listB) > 0:
         while len(listA) > 0 and len(listB) > 0:
-            if listA[0] < listB[0]:
+            if listA[0] <= listB[0]:
                 listC.append(listA[0])
                 del listA[0]
             elif listA[0] > listB[0]:
                 listC.append(listB[0])
                 del listB[0]
-        if len(listA) != 0:
-            listC.append(listA[0])
-            del listA[0]
-        elif len(listB) != 0:
+        if not listA:
             listC.append(listB[0])
             del listB[0]
+        elif not listB:
+            listC.append(listA[0])
+            del listA[0]
 
     return listC
 
@@ -48,7 +49,7 @@ def mergeLists(listA, listB):
 
 
 
-testlist = listGenerator(9)
+testlist = listGenerator(150)
 print("Unsorted list: ")
 printList(testlist)
 print("Sorted list:")
