@@ -14,7 +14,7 @@ def selectionSort(list):
     print("Generated list before sorting:")
     printList(list)
 
-    smallestElement = 0
+    smallestElement =
     for i in range(0, len(list) - 1):
 
         smallestElement = min(list[i:len(list)])
@@ -24,7 +24,7 @@ def selectionSort(list):
     print("List sorted with 'wybieranie")
     printList(list)
 
-testList = listGenerator(10)
+testList = listGenerator(50)
 
 selectionSort(testList)
 
