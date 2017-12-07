@@ -4,7 +4,7 @@ def listGenerator(n):
     generatedList = list()
 
     for n in range(0, n):
-        generatedList.append(random.randint(0,100))
+        generatedList.append(random.randint(0,150))
     return generatedList
 
 def printList(list):
@@ -14,14 +14,12 @@ def selectionSort(list):
     print("Generated list before sorting:")
     printList(list)
 
-    smallestElement =
     for i in range(0, len(list) - 1):
+        for j in range (i + 1, len(list)):
+            if list[j] < list[i]:
+                list[j], list[i] = list[i], list[j]
 
-        smallestElement = min(list[i:len(list)])
-        del list[list.index(smallestElement)]
-        list.insert(i, smallestElement)
-
-    print("List sorted with 'wybieranie")
+    print("List sorted with 'selection sort")
     printList(list)
 
 testList = listGenerator(50)
